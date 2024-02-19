@@ -1,0 +1,55 @@
+== Restaurant Recommendations
+:author: Andreas Kuczera, Stefan Armbruster
+// :twitter: neo4j
+// :tags: Recommendation, Graph Based Search
+:neo4j-version: 5.16
+
+=== Introduction
+
+This database contains the full wikidata dataset, which is a free and open knowledge base that can be read and edited by both humans and machines. 
+It contains structured data and is powered by a large community of volunteers. The data is published under the Creative Commons Public Domain Dedication, making it free of copyright restrictions.
+
+The raw dataset is available on https://www.wikidata.org/wiki/Wikidata:Database_download[https://www.wikidata.org/wiki/Wikidata:Database_download].
+
+From that dataset a https://neo4j.com/[Neo4j] database was created using the https://github.com/sarmbruster/wikidata-neo4j-importer[wikidata-neo4j-importer] tool.
+
+This database is read-only and publicly available on https://wikidata.mni.thm.de:7473. 
+
+Please do use it reasonably and don't run heavy queries that might affect other users.
+
+=== Data model
+
+TBD
+
+=== Sample queries
+
+Find Henry III in dataset, we know his id:
+
+[source,cypher]
+----
+MATCH (e:Entity{id:'Q61258'}) RETURN e
+----
+
+//table
+
+Same for Henry IV:
+
+[source,cypher]
+----
+MATCH (e:Entity{id:'Q1597817'}) RETURN e
+----
+
+//table
+
+
+How are those two related to each other, using family type relationships only:
+
+Same for Henry IV:
+
+[source,cypher]
+----
+MATCH p=shortestPath((henriIII:Entity{id:'Q61258'})-[:CHILD|FATHER|MOTHER*]-(henriIV:Entity{id:'Q1597817'})) RETURN p
+----
+//table
+
+//graph_result
