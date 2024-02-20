@@ -51,7 +51,7 @@
           <figcaption>Find Henry IV based on his Wikidata ID.</figcaption>
         </figure>
         <figure>
-          <pre class="pre-scrollable code runnable">MATCH p=shortestPath((henriIII:Entity{id:'Q61258'})-[:CHILD|FATHER|MOTHER*]-(henriIV:Entity{id:'Q1597817'})) RETURN p</pre>
+          <pre class="pre-scrollable code runnable">MATCH p=shortestPath((henriIII:Entity{id:'Q61258'})-[:CHILD*]-(henriIV:Entity{id:'Q1597817'})) RETURN p</pre>
           <figcaption>How are Henry III and Henry IV related to each other.</figcaption>
         </figure>
         <!--<h3>More code</h3>
